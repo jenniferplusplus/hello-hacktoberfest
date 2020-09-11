@@ -4,7 +4,7 @@
     <v-card-text>
       <v-list-item>
         <v-list-item-content>
-          <p>Hello, {{ name }}</p>
+          <p>Hello, <transition name="fade"><span v-show="shouldShow">{{ name }}</span></transition></p>
           <p>Are you ready for Hacktoberfest?</p>
         </v-list-item-content>
         <v-list-item-avatar tile size="100">
@@ -16,20 +16,37 @@
 </template>
 
 <script>
+import { tap, delay } from "rxjs/operators";
 import { HelloAll } from "@/services/helloAll.service";
 
 export default {
   name: "HelloAll",
   data: () => {
-    const result = {};
+    const data = {
+      name: '',
+      shouldShow: true
+    };
 
-    HelloAll.names$.subscribe(val => result.name = val)
+    HelloAll.names$
+        .pipe(
+            tap(() => data.shouldShow = false),
+            delay(250)
+        )
+        .subscribe(val => {
+          data.name = val
+          data.shouldShow = true;
+        })
 
-    return result;
+    return data;
   }
 }
 </script>
 
 <style scoped>
-
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 225ms;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>
