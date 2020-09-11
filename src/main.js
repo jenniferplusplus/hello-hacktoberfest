@@ -5,9 +5,10 @@ import VueRx from "vue-rx";
 
 Vue.config.productionTip = false
 
-Vue.use(VueRx);
+// Vue.use(VueRx);
 
 new Vue({
   vuetify,
+  VueRx,
   render: h => h(App)
 }).$mount('#app')

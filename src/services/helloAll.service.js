@@ -1,18 +1,22 @@
-import {interval} from "rxjs";
-import {map} from "rxjs/operators";
+import { interval } from "rxjs";
+import { map, startWith } from "rxjs/operators";
 import RandArray from "@/lib/rand-array";
-import {default as names} from "@/data/names.json";
+import { default as names } from "@/data/names.json";
 
-class HelloAllService{
+class HelloAllService {
   names$;
-  _names = new RandArray(names);
+  _names;
 
   constructor(delay) {
-    this.names$ = interval(delay).pipe(map(() => this._names.next()));
+    this._names = new RandArray(names);
+    this.names$ = interval(delay).pipe(
+      map(() => this._names.next()),
+      startWith('World')
+    );
   }
 }
 
-const Singleton = new HelloAllService(500);
+const Singleton = new HelloAllService(750);
 
 export {
   HelloAllService as default,
