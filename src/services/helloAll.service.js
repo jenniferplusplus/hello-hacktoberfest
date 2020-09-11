@@ -20,5 +20,5 @@ const Singleton = new HelloAllService(750);
 
 export {
   HelloAllService as default,
-  Singleton
+  Singleton as HelloAll
 };
