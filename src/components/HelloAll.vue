@@ -30,6 +30,7 @@ export default {
     HelloAll.names$
         .pipe(
             tap(() => data.shouldShow = false),
+            tap((val) => console.log({shouldShow: data.shouldShow, time: Date.Now(), val:val})
             delay(250)
         )
         .subscribe(val => {
