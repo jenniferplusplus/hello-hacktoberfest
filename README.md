@@ -1,3 +1,7 @@
+# Archived
+
+I've decided to archive this project because I do not want to maintain it or respond to random unprompted PRs. I'm glad if you've found it useful and you're welcome to work through it on your own.
+
 # hello-hacktoberfest
 
 This is basically a hello world app built with Vue, Vuetify, and RxJS. The purpose of this app is to provide a simple-yet-realistic repository to be used as a practice space for an educational git/github workshop. The names in the initial list are the leadership team of [WWC DFW][carrd] as of September 2020.
